@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class GUI {
     JFrame frame;
@@ -55,12 +56,13 @@ public class GUI {
 
     private void populateTiles() {
         ArrayList<String> listOfTiles = createTiles(this.height, this.width);
-
-        int location = 1;
+        Random rand = new Random();
         for (int row = 1; row <= height; row++) {
             for (int col = 1; col <= width; col++) {
-                String createdTile = String.format("Tile: %s - Location: x= %d : y= %d", listOfTiles.get(location-1), col, row);
-                location++;
+
+                int index = rand.nextInt(listOfTiles.size());
+                String tileFromList = listOfTiles.remove(index);
+                String createdTile = String.format("%s - Loc: x= %d : y= %d", tileFromList, col, row);
                 JButton button = new JButton(createdTile);
                 tilesPanel.add(button);
                 mapOfTiles.put(button, createdTile);
