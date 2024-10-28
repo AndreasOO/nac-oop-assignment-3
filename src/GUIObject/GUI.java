@@ -1,5 +1,7 @@
 package GUIObject;
 
+import TileObject.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class GUI {
     JPanel bottomPanel;
     JPanel tilesPanel;
     JButton resetButton;
-    Map<JButton, String> mapOfTiles;
+    Map<JButton, Tile> mapOfTiles;
     int height;
     int width;
 
@@ -60,26 +62,28 @@ public class GUI {
     }
 
     private void populateTiles() {
-        ArrayList<String> listOfTiles = createTiles(this.height, this.width);
+        ArrayList<Tile> listOfTiles = createTiles(this.height, this.width);
         Random rand = new Random();
         for (int row = 1; row <= height; row++) {
             for (int col = 1; col <= width; col++) {
 
                 int index = rand.nextInt(listOfTiles.size());
-                String tileFromList = listOfTiles.remove(index);
-                String createdTile = String.format("%s - Loc: x= %d : y= %d", tileFromList, col, row);
-                JButton button = new JButton(createdTile);
+                Tile tileFromList = listOfTiles.remove(index);
+                tileFromList.assignLocation(row, col);
+                JButton button = new JButton(String.format("%s", tileFromList.isEmpty() ? "" : String.valueOf(tileFromList.getNumber())));
                 tilesPanel.add(button);
-                mapOfTiles.put(button, createdTile);
+                mapOfTiles.put(button, tileFromList);
             }
         }
     }
 
-    private ArrayList<String> createTiles(int height, int width) {
-        ArrayList<String> listOfTiles = new ArrayList<>();
-        listOfTiles.add("Empty tile");
+    private ArrayList<Tile> createTiles(int height, int width) {
+        ArrayList<Tile> listOfTiles = new ArrayList<>();
+
+        listOfTiles.add(new Tile(true, 0));
+
         for (int i = 1; i < height*width; i++) {
-            listOfTiles.add("Tile: " + i);
+            listOfTiles.add(new Tile(false, i));
         }
         return listOfTiles;
     }
