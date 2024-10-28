@@ -2,16 +2,30 @@ package GUIObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GUI {
     JFrame frame;
     JPanel mainPanel;
-    JLabel testLabel;
+    JPanel bottomPanel;
+    JPanel tilesPanel;
+    JButton resetButton;
+    Map<JButton, String> mapOfTiles;
+    int height;
+    int width;
 
-    public GUI() {
+    public GUI(int height, int width) {
         frame = new JFrame();
         mainPanel = new JPanel();
-        testLabel = new JLabel("Test text");
+        bottomPanel = new JPanel();
+        tilesPanel = new JPanel();
+        resetButton = new JButton("Reset Game");
+        mapOfTiles = new HashMap<>();
+        this.height = height;
+        this.width = width;
+
     }
 
     public void init() {
@@ -21,8 +35,45 @@ public class GUI {
         frame.setVisible(true);
         frame.add(mainPanel);
 
-        mainPanel.add(testLabel);
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+        mainPanel.add(tilesPanel, BorderLayout.CENTER);
 
-        testLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        bottomPanel.setLayout(new GridLayout(1,1));
+        bottomPanel.add(resetButton);
+
+        tilesPanel.setLayout(new GridLayout(this.height,this.width));
+
+        populateTiles();
+
+        for (Map.Entry<JButton, String> entry : mapOfTiles.entrySet()) {
+            System.out.println(entry.getKey().getText() + " --- " + entry.getValue());
+        }
+
+
+    }
+
+    private void populateTiles() {
+        ArrayList<String> listOfTiles = createTiles(this.height, this.width);
+
+        int location = 1;
+        for (int row = 1; row <= height; row++) {
+            for (int col = 1; col <= width; col++) {
+                String createdTile = String.format("Tile: %s - Location: x= %d : y= %d", listOfTiles.get(location-1), col, row);
+                location++;
+                JButton button = new JButton(createdTile);
+                tilesPanel.add(button);
+                mapOfTiles.put(button, createdTile);
+            }
+        }
+    }
+
+    private ArrayList<String> createTiles(int height, int width) {
+        ArrayList<String> listOfTiles = new ArrayList<>();
+        listOfTiles.add("Empty tile");
+        for (int i = 1; i < height*width; i++) {
+            listOfTiles.add("Tile: " + i);
+        }
+        return listOfTiles;
     }
 }
