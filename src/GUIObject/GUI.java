@@ -47,9 +47,14 @@ public class GUI {
 
         populateTiles();
 
-        for (Map.Entry<JButton, String> entry : mapOfTiles.entrySet()) {
-            System.out.println(entry.getKey().getText() + " --- " + entry.getValue());
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        resetGame();
 
 
     }
@@ -77,5 +82,13 @@ public class GUI {
             listOfTiles.add("Tile: " + i);
         }
         return listOfTiles;
+    }
+
+    private void resetGame() {
+        mapOfTiles.clear();
+        tilesPanel.removeAll();
+        populateTiles();
+        frame.revalidate();
+        frame.repaint();
     }
 }

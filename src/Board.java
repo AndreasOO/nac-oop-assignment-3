@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    GUI gui = new GUI();
+    GUI gui = new GUI(4,4);
 
     public void addEventListeners(ActionEvent e) {
         //resetButton.addActionEvent();
