@@ -10,14 +10,14 @@ import java.util.Map;
 import java.util.Random;
 
 public class GUI {
-    JFrame frame;
-    JPanel mainPanel;
-    JPanel bottomPanel;
-    JPanel tilesPanel;
-    JButton resetButton;
-    Map<JButton, Tile> mapOfTiles;
-    int height;
-    int width;
+    private final JFrame frame;
+    private final JPanel mainPanel;
+    private final JPanel bottomPanel;
+    private final JPanel tilesPanel;
+    private final JButton resetButton;
+    private final Map<JButton, Tile> mapOfTiles;
+    private final int height;
+    private final int width;
 
     public GUI(int height, int width) {
         frame = new JFrame();
@@ -63,14 +63,19 @@ public class GUI {
 
     private void populateTiles() {
         ArrayList<Tile> listOfTiles = createTiles(this.height, this.width);
-        Random rand = new Random();
+        Random randomIndexGenerator = new Random();
+        int randomIndexOfTileList;
+
         for (int row = 1; row <= height; row++) {
             for (int col = 1; col <= width; col++) {
 
-                int index = rand.nextInt(listOfTiles.size());
-                Tile tileFromList = listOfTiles.remove(index);
+                randomIndexOfTileList = randomIndexGenerator.nextInt(listOfTiles.size());
+
+                Tile tileFromList = listOfTiles.remove(randomIndexOfTileList);
                 tileFromList.assignLocation(row, col);
-                JButton button = new JButton(String.format("%s", tileFromList.isEmpty() ? "" : String.valueOf(tileFromList.getNumber())));
+
+                JButton button = new JButton(String.format("%s", tileFromList.isEmpty() ? ""
+                                                                                        : String.valueOf(tileFromList.getNumber())));
                 tilesPanel.add(button);
                 mapOfTiles.put(button, tileFromList);
             }
