@@ -24,4 +24,17 @@ public class Tile {
         this.isEmpty = isEmpty;
         this.number = number;
     }
+
+    public Point getLocationOnBoard() {
+        return locationOnBoard;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
 }
