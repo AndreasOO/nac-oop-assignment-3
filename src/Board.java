@@ -33,6 +33,8 @@ public class Board {
                 Tile tile = entry.getValue();
                 tile.checkAdjecencyToEmtpyTile();
             });
+
+
         }
 
 
