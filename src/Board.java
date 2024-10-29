@@ -38,8 +38,12 @@ public class Board {
         for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
             entry.getKey().addActionListener(e -> {
                 System.out.println(entry.getKey().getText() + " Tile: " + entry.getValue().getNumber());
+
+                Tile pressedTile = tiles.get(entry.getKey());
                 Tile emptyTile = tiles.values().stream().filter(Tile::isEmpty).findFirst().get();
-                System.out.println(emptyTile.getNumber());
+
+                System.out.println(String.format("Pressed tile location: x:%d  y:%d", pressedTile.getLocationOnBoard().getX(), pressedTile.getLocationOnBoard().getY()));
+                System.out.println(String.format("Empty tile location: x:%d  y:%d", emptyTile.getLocationOnBoard().getX(), emptyTile.getLocationOnBoard().getY()));
             });
         }
     }
