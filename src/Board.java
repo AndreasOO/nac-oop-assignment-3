@@ -30,6 +30,8 @@ public class Board {
         for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
             entry.getKey().addActionListener(e -> {
                 System.out.println(entry.getKey().getText());
+                Tile tile = entry.getValue();
+                tile.checkAdjecencyToEmtpyTile();
             });
         }
 

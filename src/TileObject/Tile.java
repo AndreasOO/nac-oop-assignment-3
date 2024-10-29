@@ -8,6 +8,7 @@ public class Tile {
 
     Point locationOnBoard;
 
+
     public boolean checkAdjecencyToEmtpyTile() {
         return false;
     }
