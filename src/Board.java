@@ -31,6 +31,8 @@ public class Board {
             entry.getKey().addActionListener(e -> {
                 System.out.println(entry.getKey().getText());
             });
+
+
         }
 
 
