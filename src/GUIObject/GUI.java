@@ -93,11 +93,22 @@ public class GUI {
         return listOfTiles;
     }
 
-    private void resetGame() {
+    public void resetGame() {
         mapOfTiles.clear();
         tilesPanel.removeAll();
         populateTiles();
         frame.revalidate();
         frame.repaint();
     }
+
+    public Map<JButton, Tile> getMapOfTiles() {
+        return mapOfTiles;
+    }
+
+    public JButton getResetButton() {
+        return resetButton;
+    }
+
+
+
 }

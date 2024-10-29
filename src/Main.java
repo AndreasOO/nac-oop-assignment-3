@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        GUI gui = new GUI(4,4);
-        gui.init();
+        Board board = new Board();
     }
 }
