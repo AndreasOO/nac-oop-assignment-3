@@ -84,7 +84,6 @@ public class GUI {
 
     private ArrayList<Tile> createTiles(int height, int width) {
         ArrayList<Tile> listOfTiles = new ArrayList<>();
-
         listOfTiles.add(new Tile(true, 0));
 
         for (int i = 1; i < height*width; i++) {
