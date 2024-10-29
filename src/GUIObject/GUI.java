@@ -60,7 +60,6 @@ public class GUI {
 
         for (int row = 1; row <= height; row++) {
             for (int col = 1; col <= width; col++) {
-
                 randomIndexOfTileList = randomIndexGenerator.nextInt(listOfTiles.size());
 
                 Tile tileFromList = listOfTiles.remove(randomIndexOfTileList);
