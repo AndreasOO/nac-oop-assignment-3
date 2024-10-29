@@ -23,6 +23,8 @@ public class Board {
         gui.getResetButton().addActionListener(e -> {
            gui.resetGame();
         });
+
+
     }
 
     /*

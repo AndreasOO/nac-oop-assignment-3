@@ -99,6 +99,7 @@ public class GUI {
         return resetButton;
     }
 
-
-
+    public JPanel getTilesPanel() {
+        return tilesPanel;
+    }
 }
