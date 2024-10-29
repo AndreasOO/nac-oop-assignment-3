@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Board {
     private final GUI gui;
-    private final Map<JButton, Tile> tiles;
+    private Map<JButton, Tile> tiles;
 
     public Board() {
         gui = new GUI(4,4);
@@ -24,19 +24,23 @@ public class Board {
     public void addEventListeners( ) {
         gui.getResetButton().addActionListener(e -> {
            gui.resetGame();
+           initializeButtonListeners();
 
         });
 
+        initializeButtonListeners();
+
+
+
+    }
+
+    private void initializeButtonListeners() {
         for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
             entry.getKey().addActionListener(e -> {
-                System.out.println(entry.getKey().getText());
+                System.out.println(entry.getKey().getText() + " Tile: " + entry.getValue().getNumber());
+
             });
-
-
         }
-
-
-
     }
 
     /*
