@@ -31,7 +31,6 @@ public class Board {
         initializeButtonListeners();
 
 
-
     }
 
     private void initializeButtonListeners() {
