@@ -42,8 +42,33 @@ public class Board {
                 Tile emptyTile = tiles.values().stream().filter(Tile::isEmpty).findFirst().get();
 
                 boolean isAdjacent = false;
-
                 isAdjacent = pressedTile.checkAdjecencyToEmtpyTile(emptyTile);
+
+                JButton emptyTileButton = null;
+
+                if (isAdjacent) {
+                    for (Map.Entry<JButton, Tile> entry2 : tiles.entrySet()) {
+                        if (entry2.getValue().isEmpty()) {
+                            emptyTileButton = entry2.getKey();
+                        }
+                    }
+                    int pressedTempX = pressedTile.getLocationOnBoard().getX();
+                    int pressedTempY = pressedTile.getLocationOnBoard().getY();
+                    int emptyTileTempX = emptyTile.getLocationOnBoard().getX();
+                    int emptyTileTempY = emptyTile.getLocationOnBoard().getY();
+                    pressedTile.assignLocation(emptyTileTempX, emptyTileTempY);
+                    emptyTile.assignLocation(pressedTempX, pressedTempY);
+
+                    emptyTileButton.setText(String.valueOf(pressedTile.getNumber()));
+                    entry.getKey().setText("");
+
+                    Tile tempTile = pressedTile;
+                    tiles.replace(entry.getKey(), emptyTile);
+                    tiles.put(emptyTileButton, tempTile);
+                }
+
+
+
 
                 System.out.println(String.format("Pressed tile location: x:%d  y:%d", pressedTile.getLocationOnBoard().getX(), pressedTile.getLocationOnBoard().getY()));
                 System.out.println(String.format("Empty tile location: x:%d  y:%d", emptyTile.getLocationOnBoard().getX(), emptyTile.getLocationOnBoard().getY()));
