@@ -41,8 +41,14 @@ public class Board {
                 Tile pressedTile = tiles.get(entry.getKey());
                 Tile emptyTile = tiles.values().stream().filter(Tile::isEmpty).findFirst().get();
 
+                boolean isAdjacent = false;
+
+                isAdjacent = pressedTile.checkAdjecencyToEmtpyTile(emptyTile);
+
                 System.out.println(String.format("Pressed tile location: x:%d  y:%d", pressedTile.getLocationOnBoard().getX(), pressedTile.getLocationOnBoard().getY()));
                 System.out.println(String.format("Empty tile location: x:%d  y:%d", emptyTile.getLocationOnBoard().getX(), emptyTile.getLocationOnBoard().getY()));
+
+                System.out.println("Tile is adjacent:" + isAdjacent);
             });
         }
     }
