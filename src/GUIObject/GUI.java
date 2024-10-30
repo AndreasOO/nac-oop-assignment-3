@@ -48,6 +48,8 @@ public class GUI {
         tilesPanel.setLayout(new GridLayout(this.height,this.width));
 
         populateTiles();
+        frame.revalidate();
+        frame.repaint();
 
 
 
@@ -64,7 +66,7 @@ public class GUI {
                 randomIndexOfTileList = randomIndexGenerator.nextInt(listOfTiles.size());
 
                 Tile tileFromList = listOfTiles.remove(randomIndexOfTileList);
-                tileFromList.assignLocation(row, col);
+                tileFromList.assignLocation(col, row);
 
                 JButton button = new JButton(String.format("%s", tileFromList.isEmpty() ? ""
                                                                                         : String.valueOf(tileFromList.getNumber())));

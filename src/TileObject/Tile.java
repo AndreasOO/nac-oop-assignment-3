@@ -9,8 +9,18 @@ public class Tile {
     Point locationOnBoard;
 
 
-    public boolean checkAdjecencyToEmtpyTile() {
-        return false;
+    public boolean checkAdjecencyToEmtpyTile(Tile emptyTile) {
+        int x1 = this.locationOnBoard.getX();
+        int y1 = this.locationOnBoard.getY();
+        int x2 = emptyTile.locationOnBoard.getX();
+        int y2 = emptyTile.locationOnBoard.getY();
+
+        int resultX = x1 - x2;
+        int resultY = y1 - y2;
+
+        int resultTotal = Math.abs(resultX) + Math.abs(resultY);
+
+        return resultTotal == 1;
     }
 
     public void swapTiles() {
