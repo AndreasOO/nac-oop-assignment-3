@@ -1,11 +1,15 @@
 package TileObject;
 
 public class Tile {
-    int number;
-    boolean isEmpty;
+    private int number;
+    private boolean isEmpty;
+    private Point locationOnBoard;
 
-    Point locationOnBoard;
 
+    public Tile(boolean isEmpty, int number) {
+        this.isEmpty = isEmpty;
+        this.number = number;
+    }
 
     public boolean isAdjacentToEmptyTile(Tile emptyTile) {
         int x1 = this.locationOnBoard.getX();
@@ -13,25 +17,12 @@ public class Tile {
         int x2 = emptyTile.locationOnBoard.getX();
         int y2 = emptyTile.locationOnBoard.getY();
 
-        int resultX = x1 - x2;
-        int resultY = y1 - y2;
-
-        int resultTotal = Math.abs(resultX) + Math.abs(resultY);
-
-        return resultTotal == 1;
+        return Math.abs((x1 - x2) + (y1 - y2)) == 1;
     }
 
-    public void swapTiles() {
-
-    }
 
     public void assignLocation(int x, int y) {
         locationOnBoard = new Point(x, y);
-    }
-
-    public Tile(boolean isEmpty, int number) {
-        this.isEmpty = isEmpty;
-        this.number = number;
     }
 
     public Point getLocationOnBoard() {
