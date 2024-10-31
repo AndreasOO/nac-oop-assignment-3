@@ -1,7 +1,5 @@
 package TileObject;
 
-import javax.swing.*;
-
 public class Tile {
     int number;
     boolean isEmpty;
@@ -9,7 +7,7 @@ public class Tile {
     Point locationOnBoard;
 
 
-    public boolean checkAdjecencyToEmtpyTile(Tile emptyTile) {
+    public boolean isAdjacentToEmptyTile(Tile emptyTile) {
         int x1 = this.locationOnBoard.getX();
         int y1 = this.locationOnBoard.getY();
         int x2 = emptyTile.locationOnBoard.getX();

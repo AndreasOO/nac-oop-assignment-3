@@ -17,8 +17,8 @@ class TileTest {
         testTile3.assignLocation(4, 3);
         testTileEmpty.assignLocation(3, 3);
 
-        assertTrue(testTile1.checkAdjecencyToEmtpyTile(testTileEmpty));
-        assertTrue(testTile3.checkAdjecencyToEmtpyTile(testTileEmpty));
-        assertFalse(testTile2.checkAdjecencyToEmtpyTile(testTileEmpty));
+        assertTrue(testTile1.isAdjacentToEmptyTile(testTileEmpty));
+        assertTrue(testTile3.isAdjacentToEmptyTile(testTileEmpty));
+        assertFalse(testTile2.isAdjacentToEmptyTile(testTileEmpty));
     }
 }
