@@ -70,8 +70,8 @@ public class Board {
                 Tile pressedTile = tiles.get(entry.getKey());
                 Tile emptyTile = tiles.values().stream().filter(Tile::isEmpty).findFirst().get();
 
-                boolean isAdjacent = false;
-                isAdjacent = pressedTile.checkAdjecencyToEmtpyTile(emptyTile);
+                boolean isAdjacent = pressedTile.checkAdjecencyToEmtpyTile(emptyTile);
+
 
                 JButton emptyTileButton = null;
 
