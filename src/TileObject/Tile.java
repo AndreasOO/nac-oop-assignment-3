@@ -17,7 +17,7 @@ public class Tile {
         int x2 = emptyTile.locationOnBoard.getX();
         int y2 = emptyTile.locationOnBoard.getY();
 
-        return Math.abs((x1 - x2) + (y1 - y2)) == 1;
+        return Math.abs(x1-x2) + Math.abs(y1-y2) == 1;
     }
 
 
