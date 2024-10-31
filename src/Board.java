@@ -25,10 +25,12 @@ public class Board {
             boardHeight = 4;
             boardWidth = 4;
         }
-
         gui = new GUI(boardHeight,boardWidth);
         gui.init();
         buttonAndTilePairs = gui.getMapOfTiles();
+    }
+
+    public void runProgram() {
         addEventListeners();
     }
 
