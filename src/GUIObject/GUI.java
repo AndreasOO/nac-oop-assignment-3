@@ -113,4 +113,8 @@ public class GUI {
     public JButton getPrepareVictoryButton() {
         return prepareVictoryButton;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }

@@ -111,6 +111,18 @@ public class Board {
 
     private void checkVictory() {
         System.out.println("Checking victory");
+        boolean victory = false;
+        for (Tile tile : tiles.values()) {
+            int placement = ((tile.getLocationOnBoard().getY() - 1) * boardWidth) + tile.getLocationOnBoard().getX();
+            if (placement != tile.getNumber()) {
+                victory = false;
+                break;
+            }
+            victory = true;
+        }
+        if(victory) {
+            JOptionPane.showMessageDialog(gui.getFrame(), String.format("%s", victory ? "Victory!" : "No victory..."));
+        }
     }
 
     private void prepareVictory() {
