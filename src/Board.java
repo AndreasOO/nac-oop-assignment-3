@@ -84,17 +84,4 @@ public class Board {
         System.out.println("Checking victory");
     }
 
-
-    /*
-    public void trySwapTilesOrIgnore() {
-        public Tile getTileClicked(input) {
-            Tile tile = gotTileFromJPanelActionEvent;
-        }
-        Tile.checkAdjecencyToEmtpyTile();
-        Tile.swapTiles();
-        public void checkVictory() {
-
-        }
-    }*/
-
 }
