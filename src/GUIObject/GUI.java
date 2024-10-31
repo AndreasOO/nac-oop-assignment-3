@@ -13,8 +13,10 @@ public class GUI {
     private final JFrame frame;
     private final JPanel mainPanel;
     private final JPanel bottomPanel;
+    private final JPanel topPanel;
     private final JPanel tilesPanel;
     private final JButton resetButton;
+    private final JButton prepareVictoryButton;
     private final Map<JButton, Tile> mapOfTiles;
     private final int height;
     private final int width;
@@ -23,8 +25,10 @@ public class GUI {
         frame = new JFrame();
         mainPanel = new JPanel();
         bottomPanel = new JPanel();
+        topPanel = new JPanel();
         tilesPanel = new JPanel();
         resetButton = new JButton("Reset Game");
+        prepareVictoryButton = new JButton("Prepare Victory");
         mapOfTiles = new HashMap<>();
         this.height = height;
         this.width = width;
@@ -41,11 +45,15 @@ public class GUI {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
         mainPanel.add(tilesPanel, BorderLayout.CENTER);
+        mainPanel.add(topPanel, BorderLayout.NORTH);
 
         bottomPanel.setLayout(new GridLayout(1,1));
         bottomPanel.add(resetButton);
 
         tilesPanel.setLayout(new GridLayout(this.height,this.width));
+
+        topPanel.setLayout(new GridLayout(1,1));
+        topPanel.add(prepareVictoryButton);
 
         populateTiles();
         frame.revalidate();
@@ -102,4 +110,7 @@ public class GUI {
         return resetButton;
     }
 
+    public JButton getPrepareVictoryButton() {
+        return prepareVictoryButton;
+    }
 }
