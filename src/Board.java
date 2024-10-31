@@ -65,6 +65,8 @@ public class Board {
                     Tile tempTile = pressedTile;
                     tiles.replace(entry.getKey(), emptyTile);
                     tiles.put(emptyTileButton, tempTile);
+
+                    checkVictory();
                 }
 
 
@@ -77,6 +79,11 @@ public class Board {
             });
         }
     }
+
+    private void checkVictory() {
+        System.out.println("Checking victory");
+    }
+
 
     /*
     public void trySwapTilesOrIgnore() {
