@@ -48,4 +48,11 @@ public class Tile {
         return isEmpty;
     }
 
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }
