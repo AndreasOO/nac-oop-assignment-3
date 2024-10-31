@@ -77,17 +77,4 @@ public class Board {
             });
         }
     }
-
-    /*
-    public void trySwapTilesOrIgnore() {
-        public Tile getTileClicked(input) {
-            Tile tile = gotTileFromJPanelActionEvent;
-        }
-        Tile.checkAdjecencyToEmtpyTile();
-        Tile.swapTiles();
-        public void checkVictory() {
-
-        }
-    }*/
-
 }
