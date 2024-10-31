@@ -30,6 +30,10 @@ public class Board {
 
         initializeButtonListeners();
 
+        gui.getPrepareVictoryButton().addActionListener(e -> {
+            prepareVictory();
+        });
+
 
     }
 
@@ -82,6 +86,25 @@ public class Board {
 
     private void checkVictory() {
         System.out.println("Checking victory");
+    }
+
+    private void prepareVictory() {
+        System.out.println("Preparing victory");
+        for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
+            int placement = ((entry.getValue().getLocationOnBoard().getY() - 1)*4) + entry.getValue().getLocationOnBoard().getX();
+            entry.getKey().setText(String.format("%d" , placement)); // equals coordinates
+            entry.getValue().setNumber(placement);
+            entry.getValue().setEmpty(false);
+
+        }
+        for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
+            if (entry.getKey().getText().equals("16")) {
+                entry.getValue().setEmpty(true);
+                entry.getKey().setText("");
+            }
+            System.out.println(String.format("Button with text: %s is connected to Tile with number %d - Loc: x:%d y:%d", entry.getKey().getText(), entry.getValue().getNumber(), entry.getValue().getLocationOnBoard().getX(), entry.getValue().getLocationOnBoard().getY()));
+        }
+
     }
 
 }
