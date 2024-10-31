@@ -6,16 +6,41 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class Board {
     private final GUI gui;
     private Map<JButton, Tile> tiles;
+    private int boardHeight;
+    private int boardWidth;
 
     public Board() {
-        gui = new GUI(4,4);
+        Properties properties = new Properties();
+
+        try {
+            properties.load(new FileReader("properties-dir/board-size.properties"));
+            boardHeight = Integer.parseInt(properties.getProperty("height"));
+            boardWidth = Integer.parseInt(properties.getProperty("width"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            boardHeight = 4;
+            boardWidth = 4;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            boardHeight = 4;
+            boardWidth = 4;
+        }
+
+
+
+
+        gui = new GUI(boardHeight,boardWidth);
         gui.init();
         tiles = gui.getMapOfTiles();
         addEventListeners();
@@ -91,14 +116,14 @@ public class Board {
     private void prepareVictory() {
         System.out.println("Preparing victory");
         for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
-            int placement = ((entry.getValue().getLocationOnBoard().getY() - 1)*4) + entry.getValue().getLocationOnBoard().getX();
+            int placement = ((entry.getValue().getLocationOnBoard().getY() - 1)*boardWidth) + entry.getValue().getLocationOnBoard().getX();
             entry.getKey().setText(String.format("%d" , placement)); // equals coordinates
             entry.getValue().setNumber(placement);
             entry.getValue().setEmpty(false);
 
         }
         for (Map.Entry<JButton, Tile> entry : tiles.entrySet()) {
-            if (entry.getKey().getText().equals("16")) {
+            if (entry.getKey().getText().equals(String.valueOf(boardHeight*boardWidth))) {
                 entry.getValue().setEmpty(true);
                 entry.getKey().setText("");
             }
