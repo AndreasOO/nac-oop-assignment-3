@@ -20,6 +20,7 @@ public class GUI {
     private final Map<JButton, Tile> mapOfTiles;
     private final int height;
     private final int width;
+    private JButton emptyTileButton;
 
     public GUI(int height, int width) {
         frame = new JFrame();
@@ -78,6 +79,9 @@ public class GUI {
 
                 JButton button = new JButton(String.format("%s", tileFromList.isEmpty() ? ""
                                                                                         : String.valueOf(tileFromList.getNumber())));
+                if (button.getText().isEmpty()) {
+                    emptyTileButton = button;
+                }
                 tilesPanel.add(button);
                 mapOfTiles.put(button, tileFromList);
             }
@@ -116,5 +120,13 @@ public class GUI {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public JButton getEmptyTileButton() {
+        return emptyTileButton;
+    }
+
+    public void setEmptyTileButton(JButton emptyTileButton) {
+        this.emptyTileButton = emptyTileButton;
     }
 }

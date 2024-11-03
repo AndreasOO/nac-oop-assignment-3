@@ -51,17 +51,17 @@ public class Board {
 
     private void addTileButtonListeners() {
         for (Map.Entry<JButton, Tile> entry : buttonAndTilePairs.entrySet()) {
+
             JButton pressedTileButton = entry.getKey();
 
             pressedTileButton.addActionListener(e -> {
-
+                JButton emptyTileButton = gui.getEmptyTileButton();
                 Tile pressedTile = buttonAndTilePairs.get(pressedTileButton);
-                Tile emptyTile = buttonAndTilePairs.values().stream().filter(Tile::isEmpty).findFirst().get();
+                Tile emptyTile = buttonAndTilePairs.get(emptyTileButton);
+
 
 
                 if (pressedTile.isAdjacentToEmptyTile(emptyTile)) {
-                    JButton emptyTileButton = buttonAndTilePairs.entrySet().stream().filter(entrySet -> entrySet.getValue().isEmpty()).findFirst().get().getKey();
-
                     int pressedTileTempX = pressedTile.getLocationOnBoard().getX();
                     int pressedTileTempY = pressedTile.getLocationOnBoard().getY();
 
@@ -74,8 +74,11 @@ public class Board {
                     buttonAndTilePairs.replace(pressedTileButton, emptyTile);
                     buttonAndTilePairs.put(emptyTileButton, pressedTile);
 
+                    gui.setEmptyTileButton(pressedTileButton);
+
                     checkVictory();
                 }
+
 
             });
         }
@@ -107,6 +110,7 @@ public class Board {
             if (entry.getKey().getText().equals(String.valueOf(boardHeight*boardWidth))) {
                 entry.getValue().setEmpty(true);
                 entry.getKey().setText("");
+                gui.setEmptyTileButton(entry.getKey());
             }
         }
     }
